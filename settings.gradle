@@ -16,5 +16,5 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "Reverse Pixelify"
+rootProject.name = "Reverse Pixelify MOD"
 include ':app'
