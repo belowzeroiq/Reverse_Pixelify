@@ -14,5 +14,6 @@
         <item>com.google.android.as</item>
         <item>com.google.android.as.oss</item>
         <item>com.google.android.gms</item>
+        <item>com.google.android.gsf</item>
     </string-array>
 </resources>

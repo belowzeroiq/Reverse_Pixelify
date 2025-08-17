@@ -20,6 +20,16 @@ class HookEntry : IYukiHookXposedInit {
                 methodName = "setProps",
             ),
             PixelPropsUtilClass(
+                rom = "PixelOS",
+                className = "com.android.internal.util.PropImitationHooks",
+                methodName = "setProps",
+            ),
+            PixelPropsUtilClass(
+                rom = "ThePixelProject",
+                className = "com.android.internal.util.PropImitationHooks",
+                methodName = "setProps",
+            ),
+            PixelPropsUtilClass(
                 rom = "EvolutionX",
                 className = "com.android.internal.util.evolution.PixelPropsUtils",
                 methodName = "setProps",
