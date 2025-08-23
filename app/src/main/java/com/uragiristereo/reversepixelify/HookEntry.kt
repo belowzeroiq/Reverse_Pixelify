@@ -55,7 +55,7 @@ class HookEntry : IYukiHookXposedInit {
     override fun onHook() = encase {
         if (pixelPropUtilClass != null) {
             loadApp {
-                pixelPropUtilClass.className.hook {
+                pixelPropUtilClass.className.toClass().hook {
                     injectMember {
                         method { name = pixelPropUtilClass.methodName }
 
