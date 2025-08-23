@@ -1,5 +1,7 @@
 package com.uragiristereo.reversepixelify
 
+import android.app.Activity
+import android.os.Bundle
 import android.util.Log
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed
 import com.highcapable.yukihookapi.hook.factory.configs
@@ -55,15 +57,14 @@ class HookEntry : IYukiHookXposedInit {
     override fun onHook() = encase {
         if (pixelPropUtilClass != null) {
             loadApp {
-                pixelPropUtilClass.className.toClass().hook {
-                    injectMember {
-                        method { name = pixelPropUtilClass.methodName }
-
-                        beforeHook {
-                            log("Revert spoofing for $packageName")
-
-                            resultNull()
-                        }
+                // New member-based hook syntax
+                findClass(pixelPropUtilClass.className).hook {
+                    method {
+                        name = pixelPropUtilClass.methodName
+                        emptyParam()
+                    }.before {
+                        log("Revert spoofing for $packageName")
+                        result = null
                     }
                 }
             }
@@ -74,11 +75,9 @@ class HookEntry : IYukiHookXposedInit {
         for (clazz in pixelPropsUtilClasses) {
             try {
                 clazz.className.toClass()
-
                 return clazz
             } catch (_: NoClassDefFoundError) { }
         }
-
         return null
     }
 
