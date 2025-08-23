@@ -55,15 +55,11 @@ class HookEntry : IYukiHookXposedInit {
     override fun onHook() = encase {
         if (pixelPropUtilClass != null) {
             loadApp {
-                pixelPropUtilClass.className.toClass().apply {
-                    method {
-                        name = pixelPropUtilClass.methodName
-                    }.hook {
-                        before {
-                            log("Revert spoofing for $packageName")
-                            resultNull()
-                        }
-                    }
+                pixelPropUtilClass.className.toClass().method {
+                    name = pixelPropUtilClass.methodName
+                }.hook().before {
+                    log("Revert spoofing for $packageName")
+                    resultNull()
                 }
             }
         }
