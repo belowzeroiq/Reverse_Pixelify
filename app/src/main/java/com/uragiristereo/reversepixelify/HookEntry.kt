@@ -55,13 +55,15 @@ class HookEntry : IYukiHookXposedInit {
     override fun onHook() = encase {
         if (pixelPropUtilClass != null) {
             loadApp {
-                // Try this approach - find the method directly
-                findClass(pixelPropUtilClass.className).getMethod {
-                    name = pixelPropUtilClass.methodName
-                }.hook {
-                    before {
-                        log("Revert spoofing for $packageName")
-                        result = null
+                // Use the original working syntax but with the proper class reference
+                val targetClass = pixelPropUtilClass.className.toClass()
+                targetClass.hook {
+                    injectMember {
+                        method { name = pixelPropUtilClass.methodName }
+                        beforeHook {
+                            log("Revert spoofing for $packageName")
+                            resultNull()
+                        }
                     }
                 }
             }
