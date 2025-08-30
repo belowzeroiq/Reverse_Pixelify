@@ -39,6 +39,11 @@ class HookEntry : IYukiHookXposedInit {
                 className = "com.android.internal.util.crdroid.PixelPropsUtils",
                 methodName = "setProps",
             ),
+            PixelPropsUtilClass(
+                rom = "ProjectMatrixx",
+                className = "com.android.internal.util.crdroid.PixelPropsUtils",
+                methodName = "setProps",
+            ),
         )
     }
 
