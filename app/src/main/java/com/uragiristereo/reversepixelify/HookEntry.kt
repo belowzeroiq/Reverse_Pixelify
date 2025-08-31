@@ -44,6 +44,11 @@ class HookEntry : IYukiHookXposedInit {
                 className = "com.android.internal.util.crdroid.PixelPropsUtils",
                 methodName = "setProps",
             ),
+            PixelPropsUtilClass(
+                rom = "HorizonDroid",
+                className = "com.android.internal.util.PropImitationHooks",
+                methodName = "setProps",
+            ),
         )
     }
 
